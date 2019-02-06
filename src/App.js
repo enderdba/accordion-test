@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Accordion, Item } from './Accordion';
 import './App.css';
 
 
@@ -12,22 +13,20 @@ class App extends Component {
         consequat.
       </p>
     );
-    
+
     return (
       <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Accordion dynamic>
+          <Item title="Title 1">
+            <Tabs />
+          </Item>
+          <Item title="Title 2">
+            <Tabs />
+          </Item>
+          <Item title="Title 3">
+            <Tabs />
+          </Item>
+        </Accordion>
       </div>
     );
   }
