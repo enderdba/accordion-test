@@ -34,8 +34,10 @@ class Item extends Component {
     }
 
     render() {
+        const classes = "item" + (this.state.isOpen ? " active" : "");
+
         return (
-            <div>
+            <div className={classes}>
                 <button className="title" onClick={this.onClick}>
                     {this.props.title}
                 </button>
