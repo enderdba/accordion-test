@@ -1,23 +1,39 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Item from './Item'
 
-class Accordion extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
+const tabs = [
+  'Title 1',
+  'Title 2',
+  'Title 3',
+]
 
-    showChildren() {
-        return React.Children.map(this.props.children, child => {
-            //cloning the elements to apply props to all of them...
-            return React.cloneElement(child, {
-                dynamic: this.props.dynamic
-            });
-        });
-    }
-
-    render() {
-        return <div className="accordion">{this.showChildren()}</div>;
-    }
+const Accordion = (props) => {
+  const renderTab = () => (
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat.        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat.
+    </p>
+  )
+  const renderItem = (title) => {
+    return (
+      <Item
+        key={title}
+        title={title}
+      >
+        {renderTab()}
+      </Item>
+    )
+  }
+  return (
+    <div className="accordion">
+      {tabs && tabs.map(renderItem)}
+    </div>
+  )
 }
 
 export default Accordion;
