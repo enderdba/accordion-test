@@ -1,50 +1,40 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react'
 
 class Item extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { isOpen: false };
-        this.isMount = true;
+  state = {
+    isOpen: false,
+  }
+  componentDidMount() {
+    document.addEventListener('click', this.clickHandler, false)
+  }
+  componentWillUnmount() {
+    document.removeEventListener('click', this.clickHandler, false)
+  }
+  clickHandler = (e) => {
+    const { title } = this.props
+    if (title.localeCompare(e.srcElement.innerText) !== 0) {
+      this.setState({ isOpen: false })
     }
-
-    onClick = () => {
-        this.setState({ isOpen: !this.state.isOpen });
-    };
-
-    clickHandler = event => {
-        if (
-            this.isMount &&
-            this.state.isOpen &&
-            !ReactDOM.findDOMNode(this).contains(event.target)
-        ) {
-            this.setState({ isOpen: false });
-        }
-    };
-
-    componentDidMount() {
-        if (this.props.dynamic) {
-            document.addEventListener('click', this.clickHandler, false);
-        }
-    }
-
-    componentWillUnmount() {
-        this.isMount = false;
-        document.removeEventListener('click', this.clickHandler, false);
-    }
-
-    render() {
-        const classes = "item" + (this.state.isOpen ? " active" : "");
-
-        return (
-            <div className={classes}>
-                <button className="title" onClick={this.onClick}>
-                    {this.props.title}
-                </button>
-                <div className="panel">{this.props.children}</div>
-            </div>
-        );
-    }
+  }
+  onClick = () => {
+    this.setState(prevState => ({ isOpen: !prevState.isOpen }))
+  }
+  render() {
+    const { isOpen } = this.state
+    const {
+      title,
+      children,
+    } = this.props
+    const classes = `item${(isOpen ? ' active' : '')}`
+    return (
+      <div className={classes}>
+        <button className='title' onClick={this.onClick}>
+          {title}
+        </button>
+        <div className='panel'>{children}</div>
+      </div>
+    )
+  }
 }
 
-export default Item;
+export default Item

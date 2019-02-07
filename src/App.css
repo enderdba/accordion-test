@@ -18,11 +18,10 @@
   border: none;
   border-bottom: 1px solid lightgray;
   outline: none;
-  transition: 0.4s;
 }
 
 .accordion .item:last-child .title {
-border:none;
+  border: none;
 }
 
 .accordion .item .panel {
@@ -30,15 +29,16 @@ border:none;
   transition: max-height 0.25s ease-out;
   overflow: scroll;
 }
+
 .accordion .item.active .title {
   background-color: #eeeeee;
 }
 
 .accordion .item.active .panel {
-  max-height: 1500px;
+  max-height: 120px;
   transition: max-height 0.25s ease-in;
 }
 
-.accordion .item p{
- padding:0.5em;
+.accordion .item p {
+  padding: 0.5em;
 }
